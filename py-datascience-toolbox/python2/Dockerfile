@@ -6,15 +6,19 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 RUN DEBIAN_FRONTEND=noninteractive locale-gen en_US en_US.UTF-8
 
-# Install python packages
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python python-pip ipython \ 
-    ipython-notebook python-numpy python-scipy python-matplotlib python-pandas python-sklearn
-
 # Install pypy for ocassional needs for speed boosts
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y pypy
 
 # Install git
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git-core
+
+# Install python packages
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python python-pip ipython \ 
+    ipython-notebook python-numpy python-scipy python-matplotlib
+
+# Install Pandas and ScikitLearn
+RUN pip install "pandas>=0.14.0"
+RUN pip install "scikitlearn>=0.14.0"
 
 # Need to update ipython or ipython notebook will crash
 RUN DEBIAN_FRONTEND=noninteractive pip install ipython --upgrade
