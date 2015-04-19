@@ -9,6 +9,7 @@ RUN DEBIAN_FRONTEND=noninteractive locale-gen en_US en_US.UTF-8
 # Install python packages
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-pip ipython3 \ 
     ipython3-notebook python3-numpy python3-scipy python3-matplotlib python3-pandas
+RUN DEBIAN_FRONTEND=noninteractive pip3 install -U "pandas>0.14.0"
 RUN DEBIAN_FRONTEND=noninteractive pip3 install -U scikit-learn
 
 # Install git
