@@ -18,7 +18,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python python-pip ipython 
 
 # Install Pandas and ScikitLearn
 RUN pip install "pandas>=0.14.0"
-RUN pip install "scikitlearn>=0.14.0"
+RUN pip install "scikit-learn>=0.14.0"
 
 # Need to update ipython or ipython notebook will crash
 RUN DEBIAN_FRONTEND=noninteractive pip install ipython --upgrade
