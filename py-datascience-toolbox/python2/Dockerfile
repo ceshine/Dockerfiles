@@ -16,13 +16,12 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git-core
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python python-pip\ 
                     python-numpy python-scipy python-matplotlib
 
+# Need to update ipython or ipython notebook will crash
+RUN DEBIAN_FRONTEND=noninteractive pip install "ipython[all]"
+
 # Install Pandas and ScikitLearn
 RUN pip install "pandas>=0.14.0"
 RUN pip install "scikit-learn>=0.14.0"
-
-# Need to update ipython or ipython notebook will crash
-RUN DEBIAN_FRONTEND=noninteractive pip install "ipython[all]" --upgrade
-RUN DEBIAN_FRONTEND=noninteractive pip install "tornado>=4.0"
 
 #Setting up working directory
 RUN mkdir /lab 
