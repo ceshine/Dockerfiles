@@ -12,8 +12,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y pypy
 # Install git
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git-core
 
-# Install gfortran (for pymc)
-RUN apt-get install -y gfortran
+# Install compile tools
+RUN apt-get install -y gfortran libatlas-base-dev gfortran pkg-config libfreetype6-dev libxft-dev libpng-dev
 
 # Install python packages
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python python-pip python-dev
