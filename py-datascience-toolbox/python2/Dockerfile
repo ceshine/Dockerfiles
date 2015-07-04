@@ -21,7 +21,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python python-pip python-d
 # Need to update ipython or ipython notebook will crash
 RUN DEBIAN_FRONTEND=noninteractive pip install "ipython[all]"
 
-# Install Pandas and ScikitLearn
+# Install the core tools
+RUN pip install -U numpy, scipy, matplotlib
 RUN pip install -U "pandas>=0.14.0"
 RUN pip install -U "scikit-learn>=0.14.0"
 RUN pip install -U "pymc>=2.3"
