@@ -26,6 +26,7 @@ RUN pip install -U  numpy scipy matplotlib
 RUN pip install -U "pandas>=0.14.0"
 RUN pip install -U "scikit-learn>=0.14.0"
 RUN pip install -U "pymc>=2.3"
+RUN pip install -U "pydot"
 
 #Setting up working directory
 RUN mkdir /lab 
