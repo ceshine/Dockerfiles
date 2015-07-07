@@ -2,6 +2,8 @@ FROM ubuntu:latest
 
 # MAINTAINER CeShine Lee ceshine@ceshine.net
 
+RUN sed -i 's/http:\/\/archive.ubuntu.com/http:\/\/mirror.internode.on.net\/pub\/ubuntu/g' /etc/apt/sources.list
+
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 RUN DEBIAN_FRONTEND=noninteractive locale-gen en_US en_US.UTF-8
@@ -13,7 +15,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y pypy
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git-core
 
 # Install compile tools
-RUN apt-get install -y gfortran libatlas-base-dev gfortran pkg-config libfreetype6-dev libxft-dev libpng-dev
+RUN apt-get install -y gfortran libatlas-base-dev gfortran pkg-config libfreetype6-dev libxft-dev libpng-dev libhdf5-serial-dev
 
 # Install python packages
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python python-pip python-dev
