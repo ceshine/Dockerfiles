@@ -25,7 +25,7 @@ RUN DEBIAN_FRONTEND=noninteractive pip install "ipython[all]"
 RUN pip install -U  numpy scipy matplotlib
 RUN pip install -U "pandas>=0.14.0"
 RUN pip install -U "scikit-learn>=0.14.0"
-RUN pip install -U pydot pytables
+RUN pip install -U pydot tables
 RUN pip install -U "pymc>=2.3"
 
 #Setting up working directory
