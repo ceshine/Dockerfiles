@@ -2,6 +2,7 @@ FROM ubuntu:14.04
 
 # MAINTAINER CeShine Lee ceshine@ceshine.net
 
+RUN sed -i 's/http:\/\/archive.ubuntu.com/http:\/\/mirror.internode.on.net\/pub\/ubuntu/g' /etc/apt/sources.list
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 RUN DEBIAN_FRONTEND=noninteractive locale-gen en_US en_US.UTF-8
@@ -9,12 +10,19 @@ RUN DEBIAN_FRONTEND=noninteractive locale-gen en_US en_US.UTF-8
 # Install python packages
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-pip \ 
                     python3-numpy python3-scipy python3-matplotlib
+
+# Install compile tools
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3-dev gfortran libatlas-base-dev
+
+# Install core packages
 RUN DEBIAN_FRONTEND=noninteractive pip3 install "ipython[all]"
 RUN DEBIAN_FRONTEND=noninteractive pip3 install -U "pandas>0.14.0"
 RUN DEBIAN_FRONTEND=noninteractive pip3 install -U scikit-learn
 
-# Install git
+# Install pymc
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git-core
+RUN DEBIAN_FRONTEND=noninteractive pip3 install -U Theano patsy
+RUN DEBIAN_FRONTEND=noninteractive pip3 install git+https://github.com/pymc-devs/pymc3
 
 #Setting up working directory
 RUN mkdir /lab 
