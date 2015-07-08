@@ -10,7 +10,15 @@ RUN echo 'deb http://cran.rstudio.com/bin/linux/ubuntu trusty/' >> /etc/apt/sour
 RUN apt-get update
 RUN apt-get install -y r-base-dev
 
-# Create Rcloud directory
+RUN apt-get -y install libcurl4-openssl-dev
+#setup R configs
+RUN echo "r <- getOption('repos'); r['CRAN'] <- 'http://cran.us.r-project.org'; options(repos = r);" > ~/.Rprofile
+RUN Rscript -e "install.packages('data.table')"
+RUN Rscript -e "install.packages('caret')"
+#RUN Rscript -e "install.packages('RSQLite')"
+
+
+# Create Working directory
 RUN mkdir /src
 WORKDIR /src
 
