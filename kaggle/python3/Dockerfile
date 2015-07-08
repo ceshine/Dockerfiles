@@ -5,4 +5,6 @@ FROM ceshine/py3-datascience-toolbox:latest
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y byobu
 
+RUN DEBIAN_FRONTEND=noninteractive pip3 install git+https://github.com/quantopian/qgrid
+
 CMD byobu

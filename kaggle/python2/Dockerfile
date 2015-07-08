@@ -7,4 +7,6 @@ FROM ceshine/py2-datascience-toolbox:latest
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y byobu
 
+RUN DEBIAN_FRONTEND=noninteractive pip install git+https://github.com/quantopian/qgrid
+
 CMD byobu
