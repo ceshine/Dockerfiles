@@ -5,6 +5,9 @@ FROM ceshine/py3-datascience-toolbox:latest
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y byobu
 
+# Install some tools
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y p7zip emacs
+
 RUN DEBIAN_FRONTEND=noninteractive pip3 install git+https://github.com/quantopian/qgrid
 
 # Add drive binary
