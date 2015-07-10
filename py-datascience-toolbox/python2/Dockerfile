@@ -27,8 +27,13 @@ RUN DEBIAN_FRONTEND=noninteractive pip install "ipython[all]"
 RUN pip install -U  numpy scipy matplotlib
 RUN pip install -U "pandas>=0.14.0"
 RUN pip install -U "scikit-learn>=0.14.0"
+
+# Install pymc
 RUN pip install -U pydot tables
 RUN pip install -U "pymc>=2.3"
+
+# Install xgboost
+RUN cd /usr/local/src && git clone https://github.com/dmlc/xgboost.git && cd xgboost && sh build.sh && cd wrapper && python setup.py install
 
 #Setting up working directory
 RUN mkdir /lab 

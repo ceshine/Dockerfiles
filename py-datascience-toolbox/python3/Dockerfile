@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 
 # MAINTAINER CeShine Lee ceshine@ceshine.net
 
-RUN sed -i 's/http:\/\/archive.ubuntu.com/http:\/\/mirror.internode.on.net\/pub\/ubuntu/g' /etc/apt/sources.list
+# RUN sed -i 's/http:\/\/archive.ubuntu.com/http:\/\/mirror.internode.on.net\/pub\/ubuntu/g' /etc/apt/sources.list
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 RUN DEBIAN_FRONTEND=noninteractive locale-gen en_US en_US.UTF-8
@@ -27,6 +27,9 @@ RUN DEBIAN_FRONTEND=noninteractive pip3 install seaborn
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git-core
 RUN DEBIAN_FRONTEND=noninteractive pip3 install -U Theano patsy
 RUN DEBIAN_FRONTEND=noninteractive pip3 install git+https://github.com/pymc-devs/pymc3
+
+# Install xgboost
+RUN cd /usr/local/src && git clone https://github.com/dmlc/xgboost.git  && cd xgboost && sh build.sh && cd wrapper && python3 setup.py install
 
 #Setting up working directory
 RUN mkdir /lab 
