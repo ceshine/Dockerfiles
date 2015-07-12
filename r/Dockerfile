@@ -15,8 +15,11 @@ RUN apt-get -y install libcurl4-openssl-dev
 RUN echo "r <- getOption('repos'); r['CRAN'] <- 'http://cran.us.r-project.org'; options(repos = r);" > ~/.Rprofile
 RUN Rscript -e "install.packages('data.table')"
 RUN Rscript -e "install.packages('caret')"
-#RUN Rscript -e "install.packages('RSQLite')"
 
+# Install XGBoost
+RUN apt-get install libxml2-dev
+RUN Rscript -e "install.packages('devtools')"
+RUN Rscript -e "devtools::install_github('dmlc/xgboost',subdir='R-package')"
 
 # Create Working directory
 RUN mkdir /src
