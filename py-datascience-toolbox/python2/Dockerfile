@@ -33,7 +33,7 @@ RUN pip install -U pydot tables
 RUN pip install -U "pymc>=2.3"
 
 # Install xgboost
-RUN cd /usr/local/src && git clone https://github.com/dmlc/xgboost.git && cd xgboost && sh build.sh && cd wrapper && python setup.py install
+RUN cd /usr/local/src && git clone https://github.com/dmlc/xgboost.git && cd xgboost && sh build.sh && cd python-package && python setup.py install
 
 #Setting up working directory
 RUN mkdir /lab 
