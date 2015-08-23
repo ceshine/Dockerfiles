@@ -18,9 +18,16 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git-core
 RUN apt-get install -y gfortran libatlas-base-dev gfortran pkg-config libfreetype6-dev libxft-dev libpng-dev libhdf5-serial-dev
 
 # Install python packages
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python python-pip python-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python python-dev
 
-# Need to update ipython or ipython notebook will crash
+# Install pip
+RUN wget -O /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py
+RUN python /tmp/get-pip.py
+
+# Install Cython
+RUN pip install cython
+
+# Install IPython
 RUN DEBIAN_FRONTEND=noninteractive pip install "ipython[all]"
 
 # Install the core tools

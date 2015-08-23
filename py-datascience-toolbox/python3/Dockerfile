@@ -8,25 +8,32 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 RUN DEBIAN_FRONTEND=noninteractive locale-gen en_US en_US.UTF-8
 
 # Install python packages
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-pip
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3
 
 # Install compile tools
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3-dev gfortran libatlas-base-dev libfreetype6-dev libxft-dev libpng-dev
 
-# Install core packages
-RUN DEBIAN_FRONTEND=noninteractive pip3 install numpy
-RUN DEBIAN_FRONTEND=noninteractive pip3 install scipy
-RUN DEBIAN_FRONTEND=noninteractive pip3 install matplotlib
-RUN DEBIAN_FRONTEND=noninteractive pip3 install "ipython[all]"
-RUN DEBIAN_FRONTEND=noninteractive pip3 install -U "pandas>0.14.0"
-RUN DEBIAN_FRONTEND=noninteractive pip3 install -U scikit-learn
+# Install pip
+RUN wget -O /tmp/get-pip.py https//bootstrap.pypa.io/get-pip.py
+RUN python3 /tmp/get-pip.py
 
-RUN DEBIAN_FRONTEND=noninteractive pip3 install seaborn
+# Install Cython
+RUN pip install cython
+
+# Install core packages
+RUN DEBIAN_FRONTEND=noninteractive pip install numpy
+RUN DEBIAN_FRONTEND=noninteractive pip install scipy
+RUN DEBIAN_FRONTEND=noninteractive pip install matplotlib
+RUN DEBIAN_FRONTEND=noninteractive pip install "ipython[all]"
+RUN DEBIAN_FRONTEND=noninteractive pip install -U "pandas>0.14.0"
+RUN DEBIAN_FRONTEND=noninteractive pip install -U scikit-learn
+
+RUN DEBIAN_FRONTEND=noninteractive pip install seaborn
 
 # Install pymc
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git-core
-RUN DEBIAN_FRONTEND=noninteractive pip3 install -U Theano patsy
-RUN DEBIAN_FRONTEND=noninteractive pip3 install git+https://github.com/pymc-devs/pymc3
+RUN DEBIAN_FRONTEND=noninteractive pip install -U Theano patsy
+RUN DEBIAN_FRONTEND=noninteractive pip install git+https://github.com/pymc-devs/pymc3
 
 # Install xgboost
 RUN cd /usr/local/src && git clone https://github.com/dmlc/xgboost.git  && cd xgboost && sh build.sh && cd python-package && python3 setup.py install
