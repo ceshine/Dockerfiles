@@ -12,7 +12,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3
 
 # Install compile tools
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3-dev gfortran libatlas-base-dev libfreetype6-dev \
-                    libxft-dev libpng-dev g++ make
+                    libxft-dev libpng-dev g++ make patch lib32ncurses5-dev
 
 # Install pip
 RUN apt-get install -y wget
