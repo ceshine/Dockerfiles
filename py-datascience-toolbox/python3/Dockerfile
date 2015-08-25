@@ -11,7 +11,8 @@ RUN DEBIAN_FRONTEND=noninteractive locale-gen en_US en_US.UTF-8
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3
 
 # Install compile tools
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3-dev gfortran libatlas-base-dev libfreetype6-dev libxft-dev libpng-dev g++
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3-dev gfortran libatlas-base-dev libfreetype6-dev \
+                    libxft-dev libpng-dev g++ make
 
 # Install pip
 RUN apt-get install -y wget
@@ -19,7 +20,7 @@ RUN wget -O /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py
 RUN python3 /tmp/get-pip.py
 
 # Install Cython
-RUN pip install cython
+RUN DEBIAN_FRONTEND=noninteractive pip install cython
 
 # Install core packages
 RUN DEBIAN_FRONTEND=noninteractive pip install numpy
