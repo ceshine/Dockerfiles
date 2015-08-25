@@ -15,7 +15,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3-dev gfortran libat
 
 # Install pip
 RUN apt-get install -y wget
-RUN wget -O /tmp/get-pip.py https//bootstrap.pypa.io/get-pip.py
+RUN wget -O /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py
 RUN python3 /tmp/get-pip.py
 
 # Install Cython
