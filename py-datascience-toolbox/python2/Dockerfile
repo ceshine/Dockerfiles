@@ -15,7 +15,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y pypy
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git-core
 
 # Install compile tools
-RUN apt-get install -y gfortran libatlas-base-dev gfortran pkg-config libfreetype6-dev libxft-dev libpng-dev libhdf5-serial-dev
+RUN apt-get install -y gfortran libatlas-base-dev gfortran pkg-config libfreetype6-dev libxft-dev libpng-dev libhdf5-serial-dev g++
 
 # Install python packages
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python python-dev
