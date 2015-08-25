@@ -11,7 +11,7 @@ RUN DEBIAN_FRONTEND=noninteractive locale-gen en_US en_US.UTF-8
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3
 
 # Install compile tools
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3-dev gfortran libatlas-base-dev libfreetype6-dev libxft-dev libpng-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3-dev gfortran libatlas-base-dev libfreetype6-dev libxft-dev libpng-dev g++
 
 # Install pip
 RUN apt-get install -y wget
