@@ -14,6 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3-dev gfortran libatlas-base-dev libfreetype6-dev libxft-dev libpng-dev
 
 # Install pip
+RUN apt-get install -y wget
 RUN wget -O /tmp/get-pip.py https//bootstrap.pypa.io/get-pip.py
 RUN python3 /tmp/get-pip.py
 

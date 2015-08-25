@@ -21,6 +21,7 @@ RUN apt-get install -y gfortran libatlas-base-dev gfortran pkg-config libfreetyp
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python python-dev
 
 # Install pip
+RUN sudo apt-get install -y wget
 RUN wget -O /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py
 RUN python /tmp/get-pip.py
 
