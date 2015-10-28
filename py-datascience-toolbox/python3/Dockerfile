@@ -30,7 +30,8 @@ RUN DEBIAN_FRONTEND=noninteractive pip install "ipython[all]"
 RUN DEBIAN_FRONTEND=noninteractive pip install -U "pandas>0.14.0"
 RUN DEBIAN_FRONTEND=noninteractive pip install -U scikit-learn
 
-RUN DEBIAN_FRONTEND=noninteractive pip install seaborn
+# Install visualization tooks
+RUN DEBIAN_FRONTEND=noninteractive pip install seaborn ggplot
 
 # Install pymc
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git-core
@@ -41,7 +42,7 @@ RUN DEBIAN_FRONTEND=noninteractive pip install git+https://github.com/pymc-devs/
 RUN cd /usr/local/src && git clone https://github.com/dmlc/xgboost.git  && cd xgboost && sh build.sh && cd python-package && python3 setup.py install
 
 #Setting up working directory
-RUN mkdir /lab 
+RUN mkdir /lab
 WORKDIR /lab
 
 #Minimize image size

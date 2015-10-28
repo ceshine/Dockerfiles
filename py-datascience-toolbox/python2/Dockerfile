@@ -8,7 +8,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 RUN DEBIAN_FRONTEND=noninteractive locale-gen en_US en_US.UTF-8
 
-# Install pypy for ocassional needs for speed boost
+# Install pypy for occasional needs for speed boost
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y pypy
 
 # Install git
@@ -38,6 +38,9 @@ RUN pip install -U  numpy scipy matplotlib
 RUN pip install -U "pandas>=0.14.0"
 RUN pip install -U "scikit-learn>=0.14.0"
 
+# Install visualization tools
+RUN pip install -U seaborn ggplot
+
 # Install pymc
 RUN pip install -U pydot tables
 RUN pip install -U "pymc>=2.3"
@@ -46,7 +49,7 @@ RUN pip install -U "pymc>=2.3"
 RUN cd /usr/local/src && git clone https://github.com/dmlc/xgboost.git && cd xgboost && sh build.sh && cd python-package && python setup.py install
 
 #Setting up working directory
-RUN mkdir /lab 
+RUN mkdir /lab
 WORKDIR /lab
 
 #Minimize image size
