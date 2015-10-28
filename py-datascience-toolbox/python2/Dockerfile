@@ -31,7 +31,7 @@ RUN python /tmp/get-pip.py
 RUN pip install cython
 
 # Install IPython
-RUN DEBIAN_FRONTEND=noninteractive pip install "ipython[all]"
+RUN DEBIAN_FRONTEND=noninteractive pip install jupyter
 
 # Install the core tools
 RUN pip install -U  numpy scipy matplotlib
