@@ -10,6 +10,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y p7zip emacs
 
 RUN DEBIAN_FRONTEND=noninteractive pip3 install git+https://github.com/quantopian/qgrid
 
+# Temporary fix the xgboost installation problem
+RUN cp /usr/local/src/xgboost/wrapper/libxgboostwrapper.so /usr/local/lib/python3.4/dist-packages/xgboost-0.4-py3.4.egg/xgboost/
+
 # Add drive binary
 ADD drive /usr/local/bin/drive
 
