@@ -48,6 +48,9 @@ RUN pip install -U "pymc>=2.3"
 # Install xgboost
 RUN cd /usr/local/src && git clone https://github.com/dmlc/xgboost.git && cd xgboost && sh build.sh && cd python-package && python setup.py install
 
+# Install graphviz
+RUN apt-get install -y graphviz
+
 #Setting up working directory
 RUN mkdir /lab
 WORKDIR /lab
