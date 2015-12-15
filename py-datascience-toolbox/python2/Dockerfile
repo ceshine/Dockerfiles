@@ -42,7 +42,7 @@ RUN pip install -U "scikit-learn>=0.14.0"
 RUN pip install -U seaborn ggplot
 
 # Install pymc
-RUN pip install -U pydot tables
+RUN pip install -U pydot2 tables
 RUN pip install -U "pymc>=2.3"
 
 # Install xgboost
