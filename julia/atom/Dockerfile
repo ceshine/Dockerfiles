@@ -1,3 +1,11 @@
+# docker run -it \
+# -v /tmp/.X11-unix:/tmp/.X11-unix \ # mount the X11 socket
+# -e DISPLAY=unix$DISPLAY \ # pass the display
+# --device /dev/snd \ # so we have sound
+# --name atom \
+# -p 9090:8888 -v /mnt/LinuxData/ceshine/:/data \
+# julia-atom
+
 FROM julia:latest
 
 ENV ATOM_VERSION v1.7.3
