@@ -30,11 +30,11 @@ RUN DEBIAN_FRONTEND=noninteractive pip install jupyter
 RUN DEBIAN_FRONTEND=noninteractive pip install -U "pandas>0.14.0"
 RUN DEBIAN_FRONTEND=noninteractive pip install -U scikit-learn
 
-# Install visualization tooks
+# Install visualization tools
 RUN DEBIAN_FRONTEND=noninteractive pip install seaborn ggplot
 
 # Install pymc
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git-core
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git
 RUN DEBIAN_FRONTEND=noninteractive pip install -U Theano patsy
 RUN DEBIAN_FRONTEND=noninteractive pip install git+https://github.com/pymc-devs/pymc3
 
