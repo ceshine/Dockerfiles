@@ -30,8 +30,8 @@ RUN mkdir stan; cd stan; wget https://github.com/stan-dev/cmdstan/releases/downl
 
 USER docker
 
-RUN julia -e 'Pkg.add("Stan", "DataFrames", "IJulia")'
-RUN julia -e 'Pkg.build("IJulia", "DataFrames", "IJulia")'
+RUN julia -e 'Pkg.add("Stan"); Pkg.add("DataFrames"); Pkg.add("IJulia"); Pkg.add("XGBoost")'
+RUN julia -e 'Pkg.build("Stan"); Pkg.build("DataFrames"); Pkg.build("IJulia"); Pkg.build("XGBoost")'
 
 ENV CMDSTAN_HOME /usr/share/cmdstan
 ENV PATH $PATH:/usr/share/cmdstan/bin:/home/docker/.julia/v0.4/Conda/deps/usr/bin/
