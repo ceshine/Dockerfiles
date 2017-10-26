@@ -34,14 +34,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
       cmake g++  make patch && \
   apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install pip
-# RUN apt-get install -y wget
-# RUN wget -O /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py
-# RUN python3 /tmp/get-pip.py
-
 # Install Python and core packages
 RUN conda install -y --quiet python=$PYTHON_VERSION && \
-    conda install -y --quiet h5py  numpy scipy scikit-learn pandas\
+    conda install -y --quiet h5py  numpy scipy scikit-learn pandas numba tqdm\
                              mkl-service matplotlib jupyter cython && \
     conda clean -tipsy
 
@@ -63,6 +58,9 @@ RUN DEBIAN_FRONTEND=noninteractive conda install -y numpy scipy scikit-learn pan
 RUN cd /usr/local/src && git clone --recursive https://github.com/dmlc/xgboost.git  && \
     cd xgboost && sh build.sh && cd python-package && python setup.py install && \
     rm -rf /usr/local/src
+
+# Install catboost
+RUN pip install catboost
 
 # Setting up working directory
 RUN mkdir /lab
