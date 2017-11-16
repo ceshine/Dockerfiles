@@ -71,11 +71,12 @@ RUN apt-get autoremove -y && apt-get clean -y
 
 # Create the user
 RUN useradd --create-home -s /bin/bash --no-user-group -u $USERID $USERNAME && \
-    chown $USERNAME $CONDA_DIR -R && \
-    adduser $USERNAME sudo && \
+    chown -R $USERNAME $CONDA_DIR
+RUN adduser $USERNAME sudo && \
     echo "$USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 USER $USERNAME
 
 # Setting up jupyter notebook server
 EXPOSE 8888
+RUN jupyter nbextension enable --py widgetsnbextension
 CMD jupyter notebook --no-browser --ip=0.0.0.0 --port 8888
