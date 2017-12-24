@@ -38,7 +38,7 @@ WORKDIR /home/$USERNAME
 RUN conda install -y --quiet python=$PYTHON_VERSION && \
   conda install -y --quiet h5py scikit-learn \
   pandas mkl-service && \
-  conda install pytorch=0.2.0 torchvision cuda80 -c soumith && \
+  conda install pytorch=0.3.0 torchvision -c pytorch && \
   conda clean -tipsy
 
 RUN  pip install --upgrade pip && \
