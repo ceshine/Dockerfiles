@@ -20,7 +20,7 @@ RUN useradd --create-home -s /bin/bash --no-user-group -u $USERID $USERNAME && \
     echo "$USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 RUN  pip install --upgrade pip && \
-  pip install -U jupyter h5py pandas sklearn matplotlib seaborn plotly pillow-simd
+  pip install -U jupyter h5py pandas==0.22.0 sklearn matplotlib seaborn plotly pillow-simd joblib tqdm
 
 USER $USERNAME
 WORKDIR /home/$USERNAME
