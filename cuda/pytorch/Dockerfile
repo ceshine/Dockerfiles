@@ -1,4 +1,4 @@
-FROM nvidia/cuda:8.0-cudnn6-runtime-ubuntu16.04
+FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
 
 MAINTAINER CeShine Lee <ceshine@ceshine.net>
 
@@ -35,14 +35,15 @@ RUN useradd --create-home -s /bin/bash --no-user-group -u $USERID $USERNAME && \
 USER $USERNAME
 WORKDIR /home/$USERNAME
 
-RUN conda install -y --quiet python=$PYTHON_VERSION && \
-  conda install -y --quiet h5py scikit-learn \
-  pandas mkl-service && \
-  conda install pytorch=0.3.0 torchvision -c pytorch && \
+RUN conda install -y python=$PYTHON_VERSION && \
+  conda install -y h5py scikit-learn matplotlib \
+  pandas mkl-service cython && \
   conda clean -tipsy
 
 RUN  pip install --upgrade pip && \
-  pip install pillow-simd
+  pip install pillow-simd && \
+  pip install http://download.pytorch.org/whl/cu90/torch-0.4.0-cp36-cp36m-linux_x86_64.whl && \
+  pip install torchvision && rm -rf ~/.cache/pip
 
 ENV CUDA_HOME=/usr/local/cuda
 ENV CUDA_ROOT=$CUDA_HOME
