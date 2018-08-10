@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:1.7.1-gpu-py3
+FROM tensorflow/tensorflow:1.8.0-gpu-py3
 
 MAINTAINER CeShine Lee <ceshine@ceshine.net>
 
