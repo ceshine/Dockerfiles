@@ -1,10 +1,10 @@
-FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+FROM nvidia/cuda:10.0-base-ubuntu18.04
 
 MAINTAINER CeShine Lee <ceshine@ceshine.net>
 
 # Based on https://github.com/anurag/fastai-course-1/
 
-ARG PYTHON_VERSION=3.6
+ARG PYTHON_VERSION=3.7
 ARG CONDA_PYTHON_VERSION=3
 ARG CONDA_DIR=/opt/conda
 ARG USERNAME=docker
@@ -28,22 +28,22 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
 
 # Create the user
 RUN useradd --create-home -s /bin/bash --no-user-group -u $USERID $USERNAME && \
-    chown $USERNAME $CONDA_DIR -R && \
-    adduser $USERNAME sudo && \
-    echo "$USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+  chown $USERNAME $CONDA_DIR -R && \
+  adduser $USERNAME sudo && \
+  echo "$USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 USER $USERNAME
 WORKDIR /home/$USERNAME
 
 RUN conda install -y python=$PYTHON_VERSION && \
+  conda install -y pytorch torchvision cuda100 -c pytorch && \
   conda install -y h5py scikit-learn matplotlib seaborn \
   pandas mkl-service cython && \
   conda clean -tipsy
 
 RUN  pip install --upgrade pip && \
   pip install pillow-simd && \
-  pip install http://download.pytorch.org/whl/cu90/torch-0.4.1-cp36-cp36m-linux_x86_64.whl && \
-  pip install torchvision && rm -rf ~/.cache/pip
+  rm -rf ~/.cache/pip
 
 ENV CUDA_HOME=/usr/local/cuda
 ENV CUDA_ROOT=$CUDA_HOME
