@@ -40,7 +40,7 @@ RUN  pip install --upgrade pip && \
 
 # Runtime image
 # FROM nvidia/cuda:10.0-cudnn7-runtime-ubuntu18.04
-from nvidia/cuda:10.0-base
+FROM nvidia/cuda:10.0-base
 
 ARG CONDA_DIR=/opt/conda
 ARG USERNAME=docker
