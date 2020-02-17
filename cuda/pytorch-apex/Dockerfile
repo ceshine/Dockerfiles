@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04 AS BUILD
+FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04 AS BUILD
 
 LABEL maintainer="ceshine@ceshine.net"
 
@@ -24,7 +24,7 @@ RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda$CONDA_PYTHON_VERS
     rm -rf /var/lib/apt/lists/*
 
 RUN conda install -y python=$PYTHON_VERSION && \
-    conda install -y pytorch torchvision cudatoolkit=10.0 -c pytorch && \
+    conda install -y pytorch torchvision cudatoolkit=10.1 -c pytorch && \
     conda install -y h5py scikit-learn matplotlib seaborn \
     pandas mkl-service cython && \
     conda clean -tipsy
@@ -39,8 +39,7 @@ RUN  pip install --upgrade pip && \
     rm -rf ~/.cache/pip
 
 # Runtime image
-# FROM nvidia/cuda:10.0-cudnn7-runtime-ubuntu18.04
-FROM nvidia/cuda:10.0-base
+FROM nvidia/cuda:10.1-base
 
 ARG CONDA_DIR=/opt/conda
 ARG USERNAME=docker
