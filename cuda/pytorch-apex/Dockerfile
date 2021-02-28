@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04 AS BUILD
+FROM nvidia/cuda:11.0.3-cudnn8-devel-ubuntu20.04 AS BUILD
 
 LABEL maintainer="ceshine@ceshine.net"
 
@@ -24,22 +24,25 @@ RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda$CONDA_PYTHON_VERS
     rm -rf /var/lib/apt/lists/*
 
 RUN conda install -y python=$PYTHON_VERSION && \
-    conda install -y pytorch torchvision cudatoolkit=10.1 -c pytorch && \
+    conda install -y pytorch torchvision cudatoolkit=11.0 -c pytorch && \
     conda install -y h5py scikit-learn matplotlib seaborn \
     pandas mkl-service cython && \
     conda clean -tipsy
 
-# Install apex
+# Install apex (targeting Turing architecture)
 WORKDIR /tmp/
+ENV TORCH_CUDA_ARCH_LIST=Volta;Turing;Kepler+Tesla
 RUN git clone https://github.com/NVIDIA/apex.git && \
-    cd apex && pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" .
+    cd apex && \
+    pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" --global-option="--pyprof" .
+# cd apex && pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" --global-option="--pyprof" .
 
 RUN  pip install --upgrade pip && \
     pip install pillow-simd && \
     rm -rf ~/.cache/pip
 
 # Runtime image
-FROM nvidia/cuda:10.1-base
+FROM nvidia/cuda:11.0.3-base-ubuntu20.04
 
 ARG CONDA_DIR=/opt/conda
 ARG USERNAME=docker
