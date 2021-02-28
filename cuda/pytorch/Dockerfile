@@ -1,6 +1,6 @@
-FROM nvidia/cuda:10.0-base-ubuntu18.04
+FROM nvidia/cuda:11.0.3-cudnn8-devel-ubuntu20.04
 
-MAINTAINER CeShine Lee <ceshine@ceshine.net>
+LABEL maintainer="ceshine@ceshine.net"
 
 # Based on https://github.com/anurag/fastai-course-1/
 
@@ -19,7 +19,7 @@ RUN apt-get update && \
 # Install miniconda
 ENV PATH $CONDA_DIR/bin:$PATH
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates && \
-  wget --quiet https://repo.continuum.io/miniconda/Miniconda$CONDA_PYTHON_VERSION-latest-Linux-x86_64.sh -O /tmp/miniconda.sh && \
+  wget https://repo.continuum.io/miniconda/Miniconda$CONDA_PYTHON_VERSION-latest-Linux-x86_64.sh -O /tmp/miniconda.sh && \
   echo 'export PATH=$CONDA_DIR/bin:$PATH' > /etc/profile.d/conda.sh && \
   /bin/bash /tmp/miniconda.sh -b -p $CONDA_DIR && \
   rm -rf /tmp/* && \
@@ -36,7 +36,7 @@ USER $USERNAME
 WORKDIR /home/$USERNAME
 
 RUN conda install -y python=$PYTHON_VERSION && \
-  conda install -y pytorch torchvision cuda100 -c pytorch && \
+  conda install -y pytorch torchvision cudatoolkit=11.0 -c pytorch && \
   conda install -y h5py scikit-learn matplotlib seaborn \
   pandas mkl-service cython && \
   conda clean -tipsy
