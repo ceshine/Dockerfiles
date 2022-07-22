@@ -1,0 +1,30 @@
+name: pt
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pandas
+  - jupyterlab
+  - numba
+  - tensorflow
+  - tensorflow-datasets
+  - cudatoolkit=11.3
+  - pytorch=1.12
+  - ipywidgets
+  - pip:
+      - watermark
+      - python-dotenv
+      - torchmetrics==0.7.3
+      - timm
+      - https://github.com/veritable-tech/pytorch-lightning-spells/archive/pl_1_5.zip
+      - typer
+      - joblib
+      - pytorch-lightning==1.5.10
+      - albumentations==1.0.3
+      - fastcore==1.3.20
+      - omegaconf==2.1.0
+      - wandb
+prefix: /data/miniconda3/envs/pt
