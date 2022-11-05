@@ -23,11 +23,11 @@ RUN  apt-get update \
 ENV PATH $CONDA_DIR/bin:$PATH
 COPY environment.yml .
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates && \
-    wget -q https://repo.continuum.io/miniconda/Miniconda$CONDA_PYTHON_VERSION-latest-Linux-x86_64.sh -O /tmp/miniconda.sh && \
+    # wget -q https://repo.continuum.io/miniconda/Miniconda$CONDA_PYTHON_VERSION-latest-Linux-x86_64.sh -O /tmp/miniconda.sh && \
+    wget -q  https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh -O /tmp/mambaforge.sh && \
     echo 'export PATH=$CONDA_DIR/bin:$PATH' > /etc/profile.d/conda.sh && \
-    /bin/bash /tmp/miniconda.sh -b -p $CONDA_DIR && \
+    /bin/bash /tmp/mambaforge.sh -b -p $CONDA_DIR && \
     # chown $USERNAME $CONDA_DIR -R && \
-    conda install -y -c conda-forge mamba && \
     mamba env update --name base --file ./environment.yml && \
     conda clean -ay && \
     rm -rf /tmp/* && \
