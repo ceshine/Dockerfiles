@@ -1,4 +1,4 @@
-FROM ubuntu:20.04 AS build
+FROM ubuntu:22.04 AS build
 
 LABEL maintainer="Ceshine Lee <ceshine@ceshine.net>"
 
@@ -19,7 +19,7 @@ RUN  apt-get update \
 #     adduser $USERNAME sudo && \
 #     echo "$USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-# Install miniconda
+# Install mamba
 ENV PATH $CONDA_DIR/bin:$PATH
 COPY environment.yml .
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates && \

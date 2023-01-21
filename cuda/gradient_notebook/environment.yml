@@ -1,6 +1,8 @@
 name: pt
 channels:
+  - xformers/label/dev
   - pytorch
+  - nvidia
   - conda-forge
   - defaults
 dependencies:
@@ -11,10 +13,14 @@ dependencies:
   - numba
   - tensorflow
   - tensorflow-datasets
-  - cudatoolkit=11.7
-  - pytorch=1.13
+  - pytorch-cuda=11.7
+  - pytorch=1.13.1
+  - torchvision
   - ipywidgets
+  - transformers
+  - xformers
   - pip:
+      - bitsandbytes
       - watermark
       - python-dotenv
       - torchmetrics==0.7.3
@@ -23,7 +29,7 @@ dependencies:
       - typer
       - joblib
       - pytorch-lightning==1.5.10
-      - albumentations==1.0.3
+      - albumentations
       - fastcore==1.3.20
       - omegaconf==2.1.0
       - wandb
