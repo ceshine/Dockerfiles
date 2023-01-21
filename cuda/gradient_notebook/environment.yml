@@ -1,6 +1,5 @@
 name: pt
 channels:
-  - xformers/label/dev
   - pytorch
   - nvidia
   - conda-forge
@@ -17,9 +16,8 @@ dependencies:
   - pytorch=1.13.1
   - torchvision
   - ipywidgets
-  - transformers
-  - xformers
   - pip:
+      - transformers
       - bitsandbytes
       - watermark
       - python-dotenv
