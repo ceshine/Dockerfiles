@@ -12,8 +12,8 @@ dependencies:
   - numba
   - tensorflow
   - tensorflow-datasets
-  - pytorch-cuda=11.7
-  - pytorch=1.13.1
+  - pytorch-cuda=11.8
+  - pytorch=2.0
   - torchvision
   - ipywidgets
   - pip:
@@ -23,10 +23,10 @@ dependencies:
       - python-dotenv
       - torchmetrics==0.7.3
       - timm
-      - https://github.com/veritable-tech/pytorch-lightning-spells/archive/pl_1_5.zip
+      - https://github.com/veritable-tech/pytorch-lightning-spells/archive/master.zip
       - typer
       - joblib
-      - pytorch-lightning==1.5.10
+      - pytorch-lightning==1.6
       - albumentations
       - fastcore==1.3.20
       - omegaconf==2.1.0

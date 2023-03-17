@@ -1,4 +1,6 @@
 FROM ubuntu:22.04 AS build
+# FROM nvidia/cuda:11.7.0-devel-ubuntu20.04 AS build
+# FROM nvidia/cuda:11.7.0-base-ubuntu20.04 AS build
 
 LABEL maintainer="Ceshine Lee <ceshine@ceshine.net>"
 
@@ -41,7 +43,9 @@ RUN wget https://downloads.rclone.org/v1.58.1/rclone-v1.58.1-linux-amd64.zip && 
     rm rclone-v1.58.1-linux-amd64.zip && \
     rm -rf rclone-v1.58.1-linux-amd64
 
-RUN pip install --no-cache git+https://github.com/facebookresearch/xformers.git@0bad001ddd56c080524d37c84ff58d9cd030ebfd
+# xformers built in this way does not work on CUDA...
+# ENV TORCH_CUDA_ARCH_LIST="7.5 8.6"
+# RUN TORCH_CUDA_ARCH_LIST="7.5;8.6" pip install --no-cache git+https://github.com/facebookresearch/xformers.git@0bad001ddd56c080524d37c84ff58d9cd030ebfd#egg=xformers
 
 CMD ["jupyter", "lab", "--allow-root", "--ip=0.0.0.0", "--no-browser", "--ServerApp.trust_xheaders=True", "--ServerApp.disable_check_xsrf=False", "--ServerApp.allow_remote_access=True", "--ServerApp.allow_origin='*'", "--ServerApp.allow_credentials=True"]
 
@@ -49,6 +53,7 @@ CMD ["jupyter", "lab", "--allow-root", "--ip=0.0.0.0", "--no-browser", "--Server
 
 # Runtime image
 # FROM ubuntu:20.04
+# FROM nvidia/cuda:11.7.0-base-ubuntu20.04
 
 # ARG CONDA_DIR=/opt/conda
 # ARG USERNAME=docker
