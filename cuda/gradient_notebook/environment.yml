@@ -21,7 +21,7 @@ dependencies:
       - bitsandbytes
       - watermark
       - python-dotenv
-      - torchmetrics==0.7.3
+      - torchmetrics==0.8
       - timm
       - https://github.com/veritable-tech/pytorch-lightning-spells/archive/master.zip
       - typer

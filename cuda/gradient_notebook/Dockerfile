@@ -1,6 +1,6 @@
-FROM ubuntu:22.04 AS build
+# FROM ubuntu:22.04 AS build
 # FROM nvidia/cuda:11.7.0-devel-ubuntu20.04 AS build
-# FROM nvidia/cuda:11.7.0-base-ubuntu20.04 AS build
+FROM nvidia/cuda:11.8.0-base-ubuntu22.04 AS build
 
 LABEL maintainer="Ceshine Lee <ceshine@ceshine.net>"
 
