@@ -2,7 +2,7 @@ FROM ubuntu:20.04 AS BUILD
 
 LABEL maintainer="ceshine@ceshine.net"
 
-ARG PYTHON_VERSION=3.7
+ARG PYTHON_VERSION=3.10
 ARG CONDA_PYTHON_VERSION=3
 ARG CONDA_DIR=/opt/conda
 ARG USERNAME=docker
@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
     /bin/bash /tmp/miniconda.sh -b -p $CONDA_DIR && \
     conda install -y python=$PYTHON_VERSION && \
     # conda install -c conda-forge mamba && \
-    conda clean -ay && \  
+    conda clean -ay && \
     rm -rf /tmp/* && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
